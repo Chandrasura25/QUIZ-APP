@@ -33,9 +33,7 @@ const SignUp = () => {
             status:false
         },
         onSubmit: (values) => {
-            console.log(values);
             axios.post(url, values).then((res) => {
-                console.log(res);
                 seterrMessage(res.data.message)
                 navigate('/login')
             }).catch((err) => {
@@ -67,7 +65,6 @@ const SignUp = () => {
             return errors;
         }
     });
-    console.log(formik.errors)
     return (
         <>
             <div className="body">

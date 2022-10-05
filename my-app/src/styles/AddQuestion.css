@@ -90,7 +90,22 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 5px 45px rgba(0,0,0,.1);
     width: 60%;
+    /* height: 95%; */
     display: flex;
+    justify-content: center;
+}
+.boxquest{
+    transition: .5s;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(10px);
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,50%);
+    cursor: pointer;
 }
 .showQ{
     text-align: center;
@@ -101,7 +116,7 @@
 .addQ{
     border: none;
     outline: none;
-    padding: 15px 40px;
+    padding: 13px 35px;
     margin: 20px;
     border-radius: 30px;
     background: #fff;
@@ -109,4 +124,22 @@
     font-size: 0.856em;
     font-weight: 600;
     text-transform: uppercase;
+    cursor: pointer;
+}
+@media (max-width:991px) {
+    .questBody,.questBod{
+        flex-direction: column;
+    }
+    .quest{
+        text-align: center;
+        width: 80%;
+    }
+    .showQ{
+        position: absolute;
+        top: -35%;
+        right: -20%;
+    }
+    .addQ{
+        padding: 10px 25px;
+    }
 }

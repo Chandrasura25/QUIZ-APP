@@ -1,6 +1,6 @@
-import axios from 'axios'
 import React, { useState, useEffect,useRef } from 'react'
 import "../styles/AddQuestion.css"
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const AddQuestion = () => {
@@ -11,16 +11,22 @@ const AddQuestion = () => {
     const [optD, setoptD] = useState('')
     const [err, seterr] = useState('')
     const [answer, setanswer] = useState('')
-    const [result, setresult] = useState({})
+    const [result, setresult] = useState([])
     const [userId, setuserId] = useState('')
     const navigate = useNavigate()
     const popup = useRef()
     const ref = useRef()
-    const url = 'http://localhost:2030/addquest'
+    const url = 'http://localhost:2030/addquest' 
+    const getQuest = 'http://localhost:2030/getquest'; 
     useEffect(() => {
         if (localStorage.user) {
             let user = JSON.parse(localStorage.user)
             setuserId(user[0]._id)
+            let id =user[0]._id
+            axios.post(getQuest,{id}).then((res)=>{
+                setresult(res.data.result)
+                console.log(res.data);
+            })
         }
         else {
             navigate('/login')
@@ -32,17 +38,10 @@ const AddQuestion = () => {
             let quest = { question, optA, optB, optC, optD, answer, userId, point }
             console.log(quest);
             axios.post(url, quest).then((res) => {
-                console.log(res.data);
-                setresult(res.data.result)
-                if (res.data.result) {
+                if (res.data) {
                     seterr(res.data.message)
                     pop()
-                  setquestion('')
-                  setanswer('')
-                  setoptA('')
-                  setoptB('')
-                  setoptC('')
-                  setoptD('')
+                  window.location.reload()
                 }
             }).catch((err)=>{
                 seterr(err)
@@ -61,6 +60,9 @@ const AddQuestion = () => {
     const goToDashboard =()=>{
         navigate('/dashboard')
     } 
+    const questPage=()=>{
+        navigate('/getquest')
+    }
     return (
         <>
             <div>
@@ -96,10 +98,11 @@ const AddQuestion = () => {
                     </div>
                     <div className="showQ">
                         {result?
-                            <div>
-                                <h5>Question Added</h5>
-                                <div>{result.question}</div>
-                                <div>{result.answer}</div>
+                            <div className="boxquest" onClick={questPage}>
+                                <div>
+                                    <h5>Question Added</h5>
+                                    <div>{result.length}</div>
+                                </div>
                             </div>
                          :null}   
                     </div>

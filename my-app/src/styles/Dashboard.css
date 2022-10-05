@@ -302,6 +302,7 @@
     background: #287bff;
     transition: .5s;
     margin-top: 10px;
+    cursor: pointer;
 }
 #popup i{
     position: absolute;
@@ -313,6 +314,7 @@
 }
 #popup .upload:hover{
     background: #fff;
+    border: 1px solid #287bff;
     color: #287bff;
     opacity: 0.8;
 }

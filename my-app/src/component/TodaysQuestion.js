@@ -45,7 +45,7 @@ const TodaysQuestion = () => {
             axios.get(url).then((res) => {
                 setquestion(res.data.results);
                 setPick(res.data.results[0].correct_answer);
-                let answerArray =arrayShuffle([...(res.data.results[0].incorrect_answers), (res.data.results[0].correct_answer)])
+                let answerArray = arrayShuffle([...(res.data.results[0].incorrect_answers), (res.data.results[0].correct_answer)])
                 setshuffled(answerArray)
                 window.addEventListener('load', function () {
                     preloader.current.classList.add('complete')
@@ -57,15 +57,17 @@ const TodaysQuestion = () => {
             navigate('/login')
         }
     }, [])
-    console.log(shuffled);
     const getAnswer = (Input) => {
         if (Input === Pick) {
             setverify(true)
             const points = 100
-            let status = false
+            let status = true
             if (verify) {
-                axios.post(endpoint, { points, userId, status }).then((res) => {
-                    console.log(res.data)
+                let date = new Date().getDate()
+                let month = new Date().getMonth() + 1
+                let year = new Date().getFullYear()
+                let currentDate = `${date}-${month}-${year}`
+                axios.post(endpoint, { points, userId, status, currentDate }).then((res) => {
                     if (res.data.message) {
                         setmessage(res.data.message)
                         pop()
@@ -122,14 +124,14 @@ const TodaysQuestion = () => {
                                     </div>
                                     <div className="showQuest">
                                         <h3 className="center"
-                                        dangerouslySetInnerHTML={{__html:quest.question}}/>
+                                            dangerouslySetInnerHTML={{ __html: quest.question }} />
                                         <div className="option">
                                             {shuffled.map((answer, ind) => (
                                                 <div key={ind}>
                                                     <div>
                                                         <label htmlFor="" onClick={() => getAnswer(answer)}>
                                                             <input type="radio" name="option" id="" />
-                                                            <span>{answer}</span>
+                                                            <span dangerouslySetInnerHTML={{ __html: answer }}/>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -139,14 +141,11 @@ const TodaysQuestion = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div id='popup' ref={popup} className="form">
                             <p className='message'>{message}</p>
                             <button className="upload" onClick={goToDashboard}>Go Home</button>
                         </div>
                     </div>
-
-
                 )) : <div className="alert">Are you trying to jump in?</div>
             }
         </>

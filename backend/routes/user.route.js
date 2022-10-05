@@ -7,6 +7,8 @@ router.post('/login',userController.signInUser)
 router.get('/dashboard',userController.getDashboard)
 router.post('/signup',userController.registerUser);
 router.post('/upload',userController.uploadFile)
+router.post('/status',userController.getStatus)
 router.post('/point',userController.addPoints)
 router.post('/addquest',questionController.addQuest)
+router.post('/getquest',questionController.getQuest)
 module.exports = router;

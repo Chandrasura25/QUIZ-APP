@@ -1,0 +1,72 @@
+.QCbody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:#38a7ff;
+}
+.QCcontainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.QCcontainer h2{
+    color: #f7f7f7;
+    text-transform: uppercase;
+    font-size: 2em;
+    text-align: center;
+}
+.QCcontainer .box{
+    position: relative;
+    width: 400px;
+    height: 100px;
+    background: #fff;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+    box-shadow: 10px 10px 15px rgba(0,0,0,.25);
+}
+.QCcontainer .box::before{
+    content: '';
+    position: absolute;
+    background: var(--clr);
+    width: 6px;
+    height: 100%;
+    transition: .5s ease-in-out;
+}
+.QCcontainer .box:hover::before{
+    width: 100%;
+}
+.QCcontainer .box .content{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.QCcontainer .box .content .icon{
+    position: relative;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.QCcontainer .box .content .icon .fa{
+    font-size: 2.5em;
+    color: var(--clr);
+    transition: .5s ease-in-out;
+}
+.QCcontainer .box:hover .content .icon .fa,.QCcontainer .box:hover .content .text h3,.QCcontainer .box:hover .content .text p{
+    color: #fff;
+}
+.QCcontainer .box .content .text h3{
+    padding-top: 20px;
+    font-weight: 500;
+    color: var(--clr);
+    transition: .5s ease-in-out;
+}
+.QCcontainer .box .content .text p{
+    transform: translateY(-10px);
+    color: #999;
+    font-size: 0.9em;
+    transition: .5s ease-in-out;
+}

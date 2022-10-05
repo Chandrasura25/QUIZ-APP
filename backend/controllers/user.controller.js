@@ -81,11 +81,11 @@ const signInUser = (req, res) => {
     })
 }
 const getDashboard = (req, res) => {
-    console.log(req.body);
     let token = (req.headers.authorization.split(' ')[1]);
     let secret = process.env.SECRET
     jwt.verify(token, secret, (err, result) => {
         if (err) {
+            console.log(err);
             res.send({ message: 'error', status: false, err })
         }
         else {
@@ -94,7 +94,6 @@ const getDashboard = (req, res) => {
                 if (result.length > 0) {
                     console.log(result);
                     res.send({ status: true, messaage: "user authenticated", result, status: true })
-                    console.log(result);
                 }
                 else {
                     console.log(err)
@@ -104,8 +103,37 @@ const getDashboard = (req, res) => {
         }
     })
 }
+const getStatus =(req,res)=>{
+    const history = "Points added successfully for the day's challenge";
+    historyModel.find({id:req.body.userId,message:history,date:req.body.currentDate},(err,result)=>{
+        if(result.length > 0){
+            userModel.find({ _id: req.body.userId }, (err, user) => {
+                if(err){
+                    res.send({ message: 'user can not be found', status: false});
+                }
+                else{
+                    res.send({message:'found',user, status:true})
+                }
+            })
+        }
+        else{
+            let status = false 
+            userModel.findByIdAndUpdate({ _id: req.body.userId },{status:status}, (err, use) => {
+                if(err){
+                    res.send({ message: 'user can not be found', status: false});
+                }
+                else{
+                    let user = [];
+                    user.push(use);
+                    res.send({message:'changed', user, status:true})
+                    console.log(result);
+                }
+            })
+        }
+    })
+}
 const addPoints = (req, res) => {
-    console.log(req.body);
+    let date = req.body.currentDate
     let id = req.body.userId;
     userModel.find({ _id: id }, (err, user) => {
         if (err) {
@@ -121,7 +149,7 @@ const addPoints = (req, res) => {
                 else{
                     console.log(result);
                     const history = "Points added successfully for the day's challenge"
-                    var form = new historyModel({id:id,message:history})
+                    var form = new historyModel({id:id,message:history,date:date})
                     form.save((err,saved)=>{
                     if(err){
                       res.send({ message: "history can not be added", status: false })
@@ -136,4 +164,4 @@ const addPoints = (req, res) => {
     })
 
 }
-module.exports = { registerUser, uploadFile, signInUser, getDashboard, addPoints }
+module.exports = { registerUser, uploadFile, signInUser, getDashboard, addPoints , getStatus}

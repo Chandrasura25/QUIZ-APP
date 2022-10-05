@@ -51,4 +51,17 @@ const addQuest = (req, res) => {
     })
 
 }
-module.exports = { addQuest }
+const getQuest = (req,res)=>{
+    console.log(req.body);
+    let id = (req.body.id);
+    questionModel.find({ userId:id }, (err, result) => {
+        if (result.length > 0) {
+            console.log(result);
+            res.send({message:"question found",status:true,result})
+        }
+        else {
+             console.log(err);
+        }
+    })
+}
+module.exports = { addQuest, getQuest }

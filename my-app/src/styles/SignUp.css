@@ -45,7 +45,6 @@ a{
 }
 .is-invalid{
     color: #38a7ff;
-    /* box-shadow: inset 5px 5px 5px #fff,inset -5px -5px 5px #fff; */
 }
 .is-invalid::placeholder{
     color: #38a7ff;

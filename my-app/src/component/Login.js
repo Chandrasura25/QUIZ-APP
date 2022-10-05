@@ -32,7 +32,6 @@ const Login = () => {
         onSubmit: (values) => {
             console.log(values)
             axios.post(url, values).then((res) => {
-                console.log(res);
                 seterrMessage(res.data.message)
                 localStorage.token = (res.data.myToken)
                 navigate('/dashboard')
@@ -45,7 +44,6 @@ const Login = () => {
             password: yup.string().matches(/^[\w]{5,}$/, "Must be greater than five characters").required("This field is required")
         })
     });
-    // console.log(formik.errors)
     return (
         <>
             <div className="body">
