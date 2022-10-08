@@ -227,7 +227,7 @@
     z-index: 10;
     appearance: none;
 }
-.option div label span{
+.option div label .spa{
     position: relative;
     display: inline-block;
     background: #dddd;
@@ -239,7 +239,7 @@
     user-select: none;
     overflow: hidden;
 }
-.option div label span::before{
+.option div label .spa::before{
     content: '';
     position: absolute;
     top: 0;

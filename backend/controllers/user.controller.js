@@ -54,7 +54,6 @@ const uploadFile = (req, res) => {
         });
 }
 const signInUser = (req, res) => {
-    console.log(req.body);
     let { password, email } = req.body;
     userModel.findOne({ email: req.body.email }, (err, user) => {
         if (err) {
@@ -72,7 +71,6 @@ const signInUser = (req, res) => {
                     else {
                         let secret = process.env.SECRET
                         let myToken = jwt.sign({ email }, secret, { expiresIn: "7h" })
-                        console.log(myToken);
                         res.send({ message: "welcome you people", status: true, myToken })
                     }
                 })
@@ -126,7 +124,7 @@ const getStatus =(req,res)=>{
                     let user = [];
                     user.push(use);
                     res.send({message:'changed', user, status:true})
-                    console.log(result);
+                    console.log(use);
                 }
             })
         }

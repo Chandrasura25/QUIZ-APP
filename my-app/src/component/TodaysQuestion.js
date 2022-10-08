@@ -131,7 +131,7 @@ const TodaysQuestion = () => {
                                                     <div>
                                                         <label htmlFor="" onClick={() => getAnswer(answer)}>
                                                             <input type="radio" name="option" id="" />
-                                                            <span dangerouslySetInnerHTML={{ __html: answer }}/>
+                                                            <span className="spa" dangerouslySetInnerHTML={{ __html: answer }}/>
                                                         </label>
                                                     </div>
                                                 </div>
