@@ -6,7 +6,7 @@ const QuestionPage = () => {
     const navigate = useNavigate()
     const [result, setresult] = useState([])
     const [message, setmessage] = useState('')
-    const getQuest = 'http://localhost:2030/getquest';
+    const getQuest = 'https://quiz-with-asura.herokuapp.com/getquest';
     const popup = useRef()
 
     useEffect(() => {

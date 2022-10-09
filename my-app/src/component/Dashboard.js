@@ -14,9 +14,9 @@ const Dashboard = () => {
   const toggle = useRef()
   const navigation = useRef();
   const main = useRef()
-  const url = 'http://localhost:2030/dashboard'
-  const endpoint = 'http://localhost:2030/upload'
-  const getStatus = 'http://localhost:2030/status'
+  const url = 'https://quiz-with-asura.herokuapp.com/dashboard'
+  const endpoint = 'https://quiz-with-asura.herokuapp.com/upload'
+  const getStatus = 'https://quiz-with-asura.herokuapp.com/status'
   let token = localStorage.token;
   const navigate = useNavigate()
   useEffect(() => {

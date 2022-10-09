@@ -11,7 +11,7 @@ const Login = () => {
     const toggle = useRef();
     const i = useRef()
     const navigate = useNavigate();
-    const url = 'http://localhost:2030/login'
+    const url = 'https://quiz-with-asura.herokuapp.com/login'
     const showHide = () => {
         if (password.current.type === 'password') {
             password.current.setAttribute('type', 'text');

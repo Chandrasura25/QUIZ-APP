@@ -10,7 +10,10 @@ const PORT = process.env.PORT||2030
 const URI = process.env.MONGO_URI
 const userRouter = require('./routes/user.route.js')
 app.use('/',userRouter)
-
+app.use(express.static(__dirname+'/build'))
+app.get("/*",(req,res)=>{
+  res.sendFile(__dirname+'/build/index.html')
+})
 mongoose.connect(URI,(err)=>{
     if(err){
         console.log(err)

@@ -16,8 +16,8 @@ const AddQuestion = () => {
     const navigate = useNavigate()
     const popup = useRef()
     const ref = useRef()
-    const url = 'http://localhost:2030/addquest' 
-    const getQuest = 'http://localhost:2030/getquest'; 
+    const url = 'https://quiz-with-asura.herokuapp.com/addquest' 
+    const getQuest = 'https://quiz-with-asura.herokuapp.com/getquest'; 
     useEffect(() => {
         if (localStorage.user) {
             let user = JSON.parse(localStorage.user)

@@ -18,7 +18,7 @@ const TodaysQuestion = () => {
     const popup = useRef()
     const ref = useRef()
     const url = 'https://opentdb.com/api.php?amount=1&type=multiple';
-    const endpoint = 'http://localhost:2030/point'
+    const endpoint = 'https://quiz-with-asura.herokuapp.com/point'
     const [timer, setTimer] = useState(30);
     const id = useRef(null);
     useEffect(() => {

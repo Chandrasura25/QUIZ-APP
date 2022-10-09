@@ -21,7 +21,7 @@ const SignUp = () => {
             toggle.current.classList.remove('hide')
         }
     }
-    const url = 'http://localhost:2030/signup'
+    const url = 'https://quiz-with-asura.herokuapp.com/signup'
     const formik = useFormik({
         initialValues: {
             fullname: "",
